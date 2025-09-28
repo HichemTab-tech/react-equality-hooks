@@ -1,7 +1,7 @@
 import {useMemo as originalUseMemo, type DependencyList} from "react";
 import useStableValue, {type Comparator, type Strategy} from "./hooks/useStableValue";
 
-export function useMemo<T>(factory: () => T, deps: DependencyList, comparison: Strategy|Comparator = "deep"): T {
+export function useMemo<T, D extends DependencyList>(factory: () => T, deps: D, comparison: Strategy|Comparator<D> = "deep"): T {
     const changedDeps = useStableValue(deps, comparison);
 
     return originalUseMemo(factory, changedDeps);

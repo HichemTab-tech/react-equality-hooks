@@ -2,15 +2,15 @@ import {useMemo, useRef, type DependencyList} from "react";
 import isEqual from "react-fast-compare";
 
 export type Strategy = 'identity' | 'shallow' | 'deep';
-export type Comparator = (
-    prevDeps: DependencyList,
-    nextDeps: DependencyList
+export type Comparator<D extends DependencyList | undefined> = (
+    prevDeps: D,
+    nextDeps: D
 ) => boolean;
 
-const useStableValue = <D extends DependencyList | undefined>(deps: D, comparison: Strategy | Comparator) => {
+const useStableValue = <D extends DependencyList | undefined>(deps: D, comparison: Strategy | Comparator<D>) => {
     const cachedDeps = useRef(deps);
 
-    const isEqualFn = useMemo<Comparator>(() => {
+    const isEqualFn = useMemo<Comparator<NonNullable<D>>>(() => {
 
         switch (comparison) {
             case "identity":

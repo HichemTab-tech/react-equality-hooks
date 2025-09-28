@@ -1,8 +1,8 @@
 import {useLayoutEffect as originalUseLayoutEffect, type EffectCallback, type DependencyList} from "react";
 import useStableValue, {type Comparator, type Strategy} from "./hooks/useStableValue";
 
-export function useLayoutEffect(effect: EffectCallback, deps?: DependencyList, comparison: Strategy|Comparator = "deep") {
-    const changedDeps = useStableValue(deps, comparison);
+export function useLayoutEffect<D extends DependencyList | undefined>(effect: EffectCallback, deps?: DependencyList, comparison: Strategy|Comparator<D> = "deep") {
+    const changedDeps = useStableValue(deps as D, comparison);
 
     return originalUseLayoutEffect(effect, changedDeps);
 }
