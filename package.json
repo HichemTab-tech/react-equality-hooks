@@ -1,34 +1,57 @@
 {
-  "name": "npm-package-skeleton",
+  "name": "react-equality-hooks",
   "version": "0.1.0",
   "type": "module",
   "description": "",
   "keywords": [
-    "package-skeleton",
-    "npm-package-skeleton",
-    "npm-package",
-    "skeleton",
-    "npm",
-    "package"
+    "react",
+    "surveyjs",
+    "survey-js",
+    "survey",
+    "creator",
+    "react-package",
+    "react-library"
   ],
+  "main": "dist/main.min.js",
+  "module": "dist/main.esm.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "setup": "npm install && node scripts/setup.mjs"
+    "build": "vite build",
+    "test": "vitest",
+    "preview": "vite preview",
+    "dev:demo": "vite --config demo/vite.config.demo.ts",
+    "build:demo": "vite build --config demo/vite.config.demo.ts"
   },
-  "peerDependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
-  },
-  "author": "Hichem Taboukouyout <hichem.tab2002@gmail.com>",
+  "author": "Hichem Taboukouyout <hichem.taboukouyout@hichemtab-tech.me>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/HichemTab-tech/npm-package-skeleton.git"
+    "url": "git+https://github.com/HichemTab-tech/react-equality-hooks.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/HichemTab-tech/npm-package-skeleton/issues"
+    "url": "https://github.com/HichemTab-tech/react-equality-hooks/issues"
   },
-  "homepage": "https://github.com/HichemTab-tech/npm-package-skeleton#readme",
+  "homepage": "https://github.com/HichemTab-tech/react-equality-hooks#readme",
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.13",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/react": "^16.3.0",
+    "@types/node": "^24.5.2",
+    "@types/react": "^19.1.14",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "^5.0.4",
+    "jsdom": "^27.0.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "tailwindcss": "^4.1.13",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.7",
+    "vite-plugin-banner": "^0.8.1",
+    "vite-plugin-css-injected-by-js": "^3.5.2",
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^3.2.4"
+  },
   "dependencies": {
-    "prompts": "^2.4.2"
+    "classnames": "^2.5.1"
   }
 }

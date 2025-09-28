@@ -9,10 +9,10 @@ import tailwindcss from '@tailwindcss/vite';
 
 const version = require('./package.json').version;
 const bannerContent = `/*!
-* %PACKAGE-NAME% v${version}
-* (c) %AUTHOR-NAME%
+* react-equality-hooks v${version}
+* (c) Hichem Taboukouyout
 * Released under the MIT License.
-* Github: github.com/%GITHUB-OWNER-USERNAME%/%REPO-NAME%
+* Github: github.com/HichemTab-tech/react-equality-hooks
 */
    `;
 
@@ -20,7 +20,7 @@ export default defineConfig({
     build: {
         lib: {
             entry: resolve(__dirname, 'src/index.ts'), // Library entry point
-            name: '%PASCALCASE-NAME%',
+            name: 'ReactEqualityHooks',
             fileName: (format: string) => `main${format === 'es' ? '.esm' : '.min'}.js`,
             formats: ['es', 'umd']
         },
