@@ -4,7 +4,8 @@
     "baseUrl": ".",
     "paths": {
       "react-equality-hooks": ["../src"]
-    }
+    },
+    "rootDir": "../"
   },
   "include": [
     "**/*",
