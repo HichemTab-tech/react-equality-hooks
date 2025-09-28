@@ -21,7 +21,9 @@ const useStableValue = <D extends DependencyList|undefined>(deps: D, comparison:
                 return (prevDeps, nextDeps) => prevDeps.length === nextDeps.length && prevDeps.every((v, i) => {
                     if (Object.is(v, nextDeps[i])) return true;
                     if (!v || !nextDeps[i] || typeof v !== 'object' || typeof nextDeps[i] !== 'object') return false;
-                    return Object.keys(v).length === Object.keys(nextDeps[i]).length && Object.keys(v).every(key => Object.is((v as any)[key], (nextDeps as any)[i][key]));
+                    const vKeys = Object.keys(v);
+                    const nextKeys = Object.keys(nextDeps[i] as object);
+                    return vKeys.length === nextKeys.length && vKeys.every(key => Object.is((v as any)[key], (nextDeps[i] as any)[key]));
                 });
             default:
                 return comparison;
