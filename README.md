@@ -4,6 +4,8 @@
 Choose how deps are compared: **identity** (`Object.is`), **shallow**,
 **deep** (default), or **custom**, for `useMemo`, `useCallback`, `useEffect`, and friends.
 
+![react-equality-hooks banner](assets/banner.png)
+
 ---
 
 ## Getting Started
@@ -19,8 +21,6 @@ or, if using pnpm:
 ```sh
 pnpm add react-equality-hooks
 ```
-
----
 
 ## ☕ 60-Second TL;DR
 
@@ -63,8 +63,6 @@ export default function Demo() {
 }
 ```
 
----
-
 ## Usage
 
 A more detailed example across hooks:
@@ -100,8 +98,6 @@ useLayoutEffect(() => {
 
 > Tip: If you need both the React built-ins and these, you can alias:
 > `import { useMemo as useMemoBy } from 'react-equality-hooks'`.
-
----
 
 ## API Reference
 
