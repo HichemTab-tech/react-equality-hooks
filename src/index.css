@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+.myClass{
+    background: red;
+}
