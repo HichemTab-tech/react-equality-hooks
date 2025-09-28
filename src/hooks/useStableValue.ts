@@ -7,7 +7,7 @@ export type Comparator = (
     nextDeps: DependencyList
 ) => boolean;
 
-const useStableValue = <D extends DependencyList|undefined>(deps: D, comparison: Strategy|Comparator) => {
+const useStableValue = <D extends DependencyList | undefined>(deps: D, comparison: Strategy | Comparator) => {
     const cachedDeps = useRef(deps);
 
     const isEqualFn = useMemo<Comparator>(() => {
@@ -18,13 +18,25 @@ const useStableValue = <D extends DependencyList|undefined>(deps: D, comparison:
             case "deep":
                 return (prevDeps, nextDeps) => prevDeps.length === nextDeps.length && prevDeps.every((v, i) => isEqual(v, nextDeps[i]));
             case "shallow":
-                return (prevDeps, nextDeps) => prevDeps.length === nextDeps.length && prevDeps.every((v, i) => {
-                    if (Object.is(v, nextDeps[i])) return true;
-                    if (!v || !nextDeps[i] || typeof v !== 'object' || typeof nextDeps[i] !== 'object') return false;
-                    const vKeys = Object.keys(v);
-                    const nextKeys = Object.keys(nextDeps[i] as object);
-                    return vKeys.length === nextKeys.length && vKeys.every(key => Object.is((v as any)[key], (nextDeps[i] as any)[key]));
-                });
+                return (prevDeps, nextDeps) => {
+                    if (Object.is(prevDeps, nextDeps)) return true;
+                    if (
+                        typeof prevDeps !== 'object' || prevDeps === null ||
+                        typeof nextDeps !== 'object' || nextDeps === null
+                    ) {
+                        return false;
+                    }
+                    const keysA = Object.keys(prevDeps);
+                    const keysB = Object.keys(nextDeps);
+                    if (keysA.length !== keysB.length) return false;
+                    for (let key of keysA) {
+                        if (!Object.prototype.hasOwnProperty.call(nextDeps, key) ||
+                            !Object.is((prevDeps as any)[key], (nextDeps as any)[key])) {
+                            return false;
+                        }
+                    }
+                    return true;
+                };
             default:
                 return comparison;
         }
